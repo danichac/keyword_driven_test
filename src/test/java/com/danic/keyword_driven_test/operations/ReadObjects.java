@@ -9,7 +9,7 @@ public class ReadObjects {
     public Properties getObjects() throws IOException {
         prop = new Properties();
         InputStream stream =
-                new FileInputStream(new File("com/danic/keyword_driven_test/objects/object.properties"));
+                new FileInputStream(new File("src/test/java/com/danic/keyword_driven_test/objects/object.properties"));
 
         prop.load(stream);
         return prop;
