@@ -1,0 +1,7 @@
+/target
+*.iml
+/.idea
+.classpath
+.project
+.settings
+src/test/resources/screenshots/*.png
