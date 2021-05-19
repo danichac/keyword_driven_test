@@ -46,6 +46,8 @@ public class UIOperations {
                 return By.linkText(props.getProperty(objectName));
             case "PARTIALLINK":
                 return By.partialLinkText(props.getProperty(objectName));
+            case "ID":
+                return By.id(props.getProperty(objectName));
             default:
                 throw new Exception("Incorrect object type.");
         }

@@ -15,8 +15,8 @@ import static org.testng.Assert.assertEquals;
 import java.io.IOException;
 import java.util.Properties;
 
-public class LoginTest {
-    private WebDriver driver;
+public class ParentTest {
+    protected WebDriver driver;
     private ReadObjects readObjects;
     private Properties props;
     private UIOperations operations;
@@ -31,11 +31,22 @@ public class LoginTest {
     }
 
     @Test
-    public void loginTest() throws IOException {
-        Sheet sheet = ExcelReader.readSpreadsheet("TestCase1");
+    public void loginTest() {
+        try {
+            executeSteps("LogInTestCase");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(driver.getCurrentUrl(), "https://opensource-demo.orangehrmlive.com/index.php/dashboard");
+
+    }
+
+    public void executeSteps(String sheetName) throws IOException {
+        Sheet sheet = ExcelReader.readSpreadsheet(sheetName);
         int rowCount = sheet.getRowCount();
 
-        for(int i = 1; i < rowCount; i++){
+        for(int i = 1; i < rowCount + 1; i++){
             Cell cell = sheet.getCellAt(0, i);
 
             if(cell.getTextValue().length() == 0){
@@ -51,9 +62,6 @@ public class LoginTest {
                 System.out.println("New Testcase-> " + cell.getTextValue() +" Started");
             }
         }
-
-        assertEquals(driver.getCurrentUrl(), "https://opensource-demo.orangehrmlive.com/index.php/dashboard");
-
     }
 
     @AfterClass
