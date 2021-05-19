@@ -2,15 +2,18 @@ package com.danic.keyword_driven_test.operations;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.Locale;
 import java.util.Properties;
 
 public class UIOperations {
     private WebDriver driver;
+    private Actions actions;
 
     public UIOperations(WebDriver driver) {
         this.driver = driver;
+        actions = new Actions(driver);
     }
 
     public void perform(Properties props, String action, String objectName, String objectType,
@@ -28,6 +31,10 @@ public class UIOperations {
                 break;
             case "GETTEXT":
                 driver.findElement(this.getObject(props, objectName, objectType)).getText();
+                break;
+            case "HOVER":
+                actions.moveToElement(driver.findElement(this.getObject(props, objectName, objectType)))
+                        .perform();
                 break;
         }
     }

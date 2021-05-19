@@ -7,9 +7,8 @@ import org.jopendocument.dom.spreadsheet.Cell;
 import org.jopendocument.dom.spreadsheet.Sheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
@@ -21,7 +20,7 @@ public class ParentTest {
     private Properties props;
     private UIOperations operations;
 
-    @BeforeClass
+    @BeforeSuite
     public void setUp() throws IOException {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
@@ -46,12 +45,11 @@ public class ParentTest {
         Sheet sheet = ExcelReader.readSpreadsheet(sheetName);
         int rowCount = sheet.getRowCount();
 
-        for(int i = 1; i < rowCount + 1; i++){
+        for(int i = 1; i < rowCount; i++){
             Cell cell = sheet.getCellAt(0, i);
 
             if(cell.getTextValue().length() == 0){
                 try {
-                    System.out.println(driver.getCurrentUrl());
                     operations.perform(props, sheet.getCellAt(1, i).getTextValue(),
                             sheet.getCellAt(2,i).getTextValue(), sheet.getCellAt(3,i).getTextValue(),
                             sheet.getCellAt(4,i).getTextValue());
@@ -64,7 +62,7 @@ public class ParentTest {
         }
     }
 
-    @AfterClass
+    @AfterSuite
     public void tearDown(){
         driver.quit();
     }
