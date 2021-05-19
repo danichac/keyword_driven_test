@@ -7,34 +7,25 @@ import java.io.IOException;
 
 public class PIMTestCases extends ParentTest{
 
+    @Test(dependsOnMethods = {"searchEmpTest"})
+    public void deleteEmpTest() throws IOException {
+        executeSteps("DeleteEmployee");
+    }
+
     @Test(dependsOnMethods = {"addEmpTest"})
-    public void searchEmpTest(){
-        try {
-            executeSteps("SearchEmployee");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void searchEmpTest() throws IOException {
+        executeSteps("SearchEmployee");
     }
 
     @Test(dependsOnMethods = {"loginTest"})
-    public void addEmpTest(){
-        try {
-            executeSteps("AddEmployeeTestCase");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(driver.getCurrentUrl());
+    public void addEmpTest() throws IOException {
+        executeSteps("AddEmployeeTestCase");
     }
     
     @Test
-    public void loginTest() {
-        try {
-            executeSteps("LogInTestCase");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void loginTest() throws IOException {
+        executeSteps("LogInTestCase");
 
         assertEquals(driver.getCurrentUrl(), "https://opensource-demo.orangehrmlive.com/index.php/dashboard");
-
     }
 }

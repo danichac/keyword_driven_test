@@ -43,6 +43,8 @@ public class UIOperations {
             case "WAIT":
                 wait.until(ExpectedConditions.visibilityOfElementLocated(this.getObject(props, objectName, objectType)));
                 break;
+            case "PRINT":
+                System.out.println(driver.findElement(this.getObject(props, objectName, objectType)).getText());
         }
     }
 
