@@ -7,9 +7,8 @@ import org.jopendocument.dom.spreadsheet.Cell;
 import org.jopendocument.dom.spreadsheet.Sheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
@@ -30,28 +29,17 @@ public class ParentTest {
         operations = new UIOperations(driver);
     }
 
-    @Test
-    public void loginTest() {
-        try {
-            executeSteps("LogInTestCase");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        assertEquals(driver.getCurrentUrl(), "https://opensource-demo.orangehrmlive.com/index.php/dashboard");
-
-    }
+   
 
     public void executeSteps(String sheetName) throws IOException {
         Sheet sheet = ExcelReader.readSpreadsheet(sheetName);
         int rowCount = sheet.getRowCount();
 
-        for(int i = 1; i < rowCount + 1; i++){
+        for(int i = 1; i < rowCount; i++){
             Cell cell = sheet.getCellAt(0, i);
 
             if(cell.getTextValue().length() == 0){
                 try {
-                    System.out.println(driver.getCurrentUrl());
                     operations.perform(props, sheet.getCellAt(1, i).getTextValue(),
                             sheet.getCellAt(2,i).getTextValue(), sheet.getCellAt(3,i).getTextValue(),
                             sheet.getCellAt(4,i).getTextValue());
