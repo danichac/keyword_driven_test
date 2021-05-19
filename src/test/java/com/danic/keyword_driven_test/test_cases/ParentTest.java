@@ -29,17 +29,7 @@ public class ParentTest {
         operations = new UIOperations(driver);
     }
 
-    @Test
-    public void loginTest() {
-        try {
-            executeSteps("LogInTestCase");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        assertEquals(driver.getCurrentUrl(), "https://opensource-demo.orangehrmlive.com/index.php/dashboard");
-
-    }
+   
 
     public void executeSteps(String sheetName) throws IOException {
         Sheet sheet = ExcelReader.readSpreadsheet(sheetName);

@@ -5,3 +5,4 @@
 .project
 .settings
 src/test/resources/screenshots/*.png
+/test-output

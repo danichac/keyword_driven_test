@@ -16,4 +16,16 @@ public class AddEmpTestCase extends ParentTest{
         }
         System.out.println(driver.getCurrentUrl());
     }
+    
+    @Test
+    public void loginTest() {
+        try {
+            executeSteps("LogInTestCase");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(driver.getCurrentUrl(), "https://opensource-demo.orangehrmlive.com/index.php/dashboard");
+
+    }
 }
