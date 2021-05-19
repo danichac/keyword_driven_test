@@ -5,7 +5,16 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 
-public class AddEmpTestCase extends ParentTest{
+public class PIMTestCases extends ParentTest{
+
+    @Test(dependsOnMethods = {"addEmpTest"})
+    public void searchEmpTest(){
+        try {
+            executeSteps("SearchEmployee");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test(dependsOnMethods = {"loginTest"})
     public void addEmpTest(){

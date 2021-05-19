@@ -4,7 +4,7 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="com.danic.keyword_driven_test.test_cases.ParentTest"/>
-      <class name="com.danic.keyword_driven_test.test_cases.AddEmpTestCase"/>
+      <class name="com.danic.keyword_driven_test.test_cases.PIMTestCases"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

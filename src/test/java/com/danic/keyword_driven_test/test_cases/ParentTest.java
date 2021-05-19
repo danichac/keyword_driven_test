@@ -3,13 +3,12 @@ package com.danic.keyword_driven_test.test_cases;
 import com.danic.keyword_driven_test.excel_file.ExcelReader;
 import com.danic.keyword_driven_test.operations.ReadObjects;
 import com.danic.keyword_driven_test.operations.UIOperations;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.jopendocument.dom.spreadsheet.Cell;
 import org.jopendocument.dom.spreadsheet.Sheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-
-import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -20,9 +19,9 @@ public class ParentTest {
     private Properties props;
     private UIOperations operations;
 
-    @BeforeSuite
+    @BeforeClass
     public void setUp() throws IOException {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         readObjects = new ReadObjects();
         props = readObjects.getObjects();
@@ -46,13 +45,17 @@ public class ParentTest {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                System.out.printf("Step No.%d -> %10s|%25s|%8s|%s\n",i-1, sheet.getCellAt(1, i).getTextValue(),
+                        sheet.getCellAt(2,i).getTextValue(), sheet.getCellAt(3,i).getTextValue(),
+                        sheet.getCellAt(4,i).getTextValue() );
             } else {
-                System.out.println("New Testcase-> " + cell.getTextValue() +" Started");
+                System.out.println("New Testcase-> [" + cell.getTextValue() +"] Started");
             }
         }
+        System.out.println("End of test case.\n");
     }
 
-    @AfterSuite
+    @AfterClass
     public void tearDown(){
         driver.quit();
     }

@@ -3,6 +3,8 @@ package com.danic.keyword_driven_test.operations;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Locale;
 import java.util.Properties;
@@ -10,10 +12,12 @@ import java.util.Properties;
 public class UIOperations {
     private WebDriver driver;
     private Actions actions;
+    private WebDriverWait wait;
 
     public UIOperations(WebDriver driver) {
         this.driver = driver;
         actions = new Actions(driver);
+        wait = new WebDriverWait(driver,5);
     }
 
     public void perform(Properties props, String action, String objectName, String objectType,
@@ -35,6 +39,9 @@ public class UIOperations {
             case "HOVER":
                 actions.moveToElement(driver.findElement(this.getObject(props, objectName, objectType)))
                         .perform();
+                break;
+            case "WAIT":
+                wait.until(ExpectedConditions.visibilityOfElementLocated(this.getObject(props, objectName, objectType)));
                 break;
         }
     }
