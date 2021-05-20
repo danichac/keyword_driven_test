@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test thread-count="5" name="Test">
+  <listeners>
+    <listener class-name="com.danic.keyword_driven_test.utilities.reporting.TestListener" />
+  </listeners>
+  <test thread-count="5" name="KeyWordDrivenTest">
     <classes>
       <class name="com.danic.keyword_driven_test.test_cases.ParentTest"/>
       <class name="com.danic.keyword_driven_test.test_cases.PIMTestCases"/>
     </classes>
   </test> <!-- Test -->
+  <test thread-count="5" name="POMTest">
+    <classes>
+      <class name="com.danic.keyword_driven_test.page_tests.WidgetsPageTest"/>
+    </classes>
+  </test>
 </suite> <!-- Suite -->

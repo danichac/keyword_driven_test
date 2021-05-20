@@ -45,6 +45,8 @@ public class UIOperations {
                 break;
             case "PRINT":
                 System.out.println(driver.findElement(this.getObject(props, objectName, objectType)).getText());
+            case "MAXIMIZE":
+                driver.manage().window().maximize();
         }
     }
 
