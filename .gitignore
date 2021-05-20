@@ -6,3 +6,5 @@
 .settings
 src/test/resources/screenshots/*.png
 /test-output
+/allure-results
+/allure-report

@@ -38,16 +38,16 @@ public class ParentTest {
             Cell cell = sheet.getCellAt(0, i);
 
             if(cell.getTextValue().length() == 0){
+            	System.out.printf("Step No.%03d -> %10s|%25s|%8s|%s\n",i-1, sheet.getCellAt(1, i).getTextValue(),
+                        sheet.getCellAt(2,i).getTextValue(), sheet.getCellAt(3,i).getTextValue(),
+                        sheet.getCellAt(4,i).getTextValue());
                 try {
                     operations.perform(props, sheet.getCellAt(1, i).getTextValue(),
                             sheet.getCellAt(2,i).getTextValue(), sheet.getCellAt(3,i).getTextValue(),
                             sheet.getCellAt(4,i).getTextValue());
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-                System.out.printf("Step No.%d -> %10s|%25s|%8s|%s\n",i-1, sheet.getCellAt(1, i).getTextValue(),
-                        sheet.getCellAt(2,i).getTextValue(), sheet.getCellAt(3,i).getTextValue(),
-                        sheet.getCellAt(4,i).getTextValue() );
+                }            
             } else {
                 System.out.println("New Testcase-> [" + cell.getTextValue() +"] Started");
             }
