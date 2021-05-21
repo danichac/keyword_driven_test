@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite">
+<suite name="Suite" parallel="tests" thread-count="2">
   <listeners>
     <listener class-name="com.danic.keyword_driven_test.utilities.reporting.TestListener" />
   </listeners>
@@ -8,6 +8,7 @@
     <classes>
       <class name="com.danic.keyword_driven_test.test_cases.ParentTest"/>
       <class name="com.danic.keyword_driven_test.test_cases.PIMTestCases"/>
+      <class name="com.danic.keyword_driven_test.test_cases.TimeTestCases"/>
     </classes>
   </test> <!-- Test -->
   <test thread-count="5" name="POMTest">

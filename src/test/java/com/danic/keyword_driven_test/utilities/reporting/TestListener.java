@@ -30,10 +30,7 @@ public class TestListener implements ITestListener {
 
     public void onTestFailure(ITestResult result) {
         System.out.println("*** Test execution [" + result.getMethod().getMethodName() + "] failed...");
-        ExtentTestManager.getTest().log(Status.FAIL, "Test Failed");
-        ITestContext context = result.getTestContext();
-        WebDriver driver = (WebDriver) context.getAttribute("driver");
-        Screenshot.takeScreenshot(driver, result.getMethod().getMethodName());
+        ExtentTestManager.getTest().log(Status.FAIL, result.getThrowable());
     }
 
     public void onTestSkipped(ITestResult result) {

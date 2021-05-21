@@ -10,16 +10,16 @@ import java.io.IOException;
 import java.time.Instant;
 
 public class Screenshot {
-    private static final String fileSeperator = System.getProperty("file.separator");
-    private static final String reportFilepath = System.getProperty("user.dir") +fileSeperator+ "TestReport"
-        + fileSeperator + "screenshots";
+    private static final String fileSeparator = System.getProperty("file.separator");
+    private static final String reportFilepath = System.getProperty("user.dir") + fileSeparator + "TestReport"
+        + fileSeparator + "screenshots";
 
     public static void takeScreenshot(WebDriver driver, String screenshotName){
         TakesScreenshot camera = (TakesScreenshot)driver;
         File screenshot = camera.getScreenshotAs(OutputType.FILE);
         String timeStamp = Instant.now().toString();
-        String newScreenshotName = reportFilepath + fileSeperator + screenshotName + "-" + timeStamp + ".png";
-
+        String newScreenshotName = reportFilepath + fileSeparator + screenshotName + "-" + timeStamp + ".png";
+        System.out.println(newScreenshotName);
         try {
             Files.move(screenshot, new File(newScreenshotName));
         } catch (IOException e) {
